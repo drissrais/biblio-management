@@ -1,13 +1,30 @@
 package com.project7.soap.webservices.bibliomanagement.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "editor")
 public class Editor implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
+	@Column(name = "name")
 	private String name;
+	@OneToMany(mappedBy = "editor")
+	private Collection<Book> books;
 	
 	public Editor() {
 		super();
@@ -32,6 +49,14 @@ public class Editor implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Collection<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Collection<Book> books) {
+		this.books = books;
 	}
 
 }
