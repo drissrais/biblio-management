@@ -13,13 +13,13 @@ public class Loan implements Serializable {
 	private User user;
 	private Copy copy;
 	private Status status;
-	private boolean extended;
+	private Boolean extended;
 	
 	public Loan() {
 		super();
 	}
 
-	public Loan(Date startDate, Date endDate, User user, Copy copy, Status status, boolean extended) {
+	public Loan(Date startDate, Date endDate, User user, Copy copy, Status status, Boolean extended) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
