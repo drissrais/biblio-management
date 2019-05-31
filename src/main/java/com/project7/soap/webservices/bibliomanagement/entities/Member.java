@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "member")
+public class Member implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -28,11 +28,11 @@ public class User implements Serializable {
 	@Column(name = "password")
 	private String password;
 	
-	public User() {
+	public Member() {
 		super();
 	}
 
-	public User(String firstName, String lastName, String email, String password) {
+	public Member(String firstName, String lastName, String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

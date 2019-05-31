@@ -28,8 +28,8 @@ public class Loan implements Serializable {
 	@Column(name = "end_date")
 	private Date endDate;
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "member_id")
+	private Member member;
 	@OneToOne
 	@JoinColumn(name = "copy_id")
 	private Copy copy;
@@ -43,11 +43,11 @@ public class Loan implements Serializable {
 		super();
 	}
 
-	public Loan(Date startDate, Date endDate, User user, Copy copy, Status status, Boolean extended) {
+	public Loan(Date startDate, Date endDate, Member member, Copy copy, Status status, Boolean extended) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.user = user;
+		this.member = member;
 		this.copy = copy;
 		this.status = status;
 		this.extended = extended;
@@ -77,12 +77,12 @@ public class Loan implements Serializable {
 		this.endDate = endDate;
 	}
 
-	public User getUser() {
-		return user;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public Copy getCopy() {
