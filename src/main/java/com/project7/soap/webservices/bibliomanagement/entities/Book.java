@@ -29,7 +29,7 @@ public class Book implements Serializable {
 	private String title;
 	@Column(name = "image")
 	private String image;
-	@Column(name = "summary")
+	@Column(name = "summary", length = 4000)
 	private String summary;
 	@Column(name = "isbn")
 	private Long isbn;

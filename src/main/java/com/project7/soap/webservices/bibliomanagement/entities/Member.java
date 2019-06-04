@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnTransformer;
+
 @Entity
 @Table(name = "member")
 public class Member implements Serializable {
@@ -26,6 +28,10 @@ public class Member implements Serializable {
 	@Column(name = "email")
 	private String email;
 	@Column(name = "password")
+	@ColumnTransformer(
+		read = "pgp_sym_decrypt(password, 'mySecretKey')", 
+		write = "pgp_sym_encrypt(?, 'mySecretKey')"
+	)
 	private String password;
 	
 	public Member() {
