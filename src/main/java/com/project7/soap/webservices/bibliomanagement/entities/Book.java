@@ -1,7 +1,8 @@
 package com.project7.soap.webservices.bibliomanagement.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,18 +34,18 @@ public class Book implements Serializable {
 	private String summary;
 	@Column(name = "isbn")
 	private Long isbn;
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "language_id")
 	private Language language;
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "editor_id")
 	private Editor editor;
 	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
-	private Collection<Copy> copies;
+	private List<Copy> copies = new ArrayList<Copy>();
 	@ManyToMany(mappedBy = "books")
-	private Collection<Genre> genres;
+	private List<Genre> genres = new ArrayList<Genre>();
 	@ManyToMany(mappedBy = "books")
-	private Collection<Author> authors;
+	private List<Author> authors = new ArrayList<Author>();
 	
 	public Book() {
 		super();
@@ -102,24 +103,24 @@ public class Book implements Serializable {
 	public void setEditor(Editor editor) {
 		this.editor = editor;
 	}
-	public Collection<Copy> getCopies() {
+	public List<Copy> getCopies() {
 		return copies;
 	}
-	public void setCopies(Collection<Copy> copies) {
+	public void setCopies(List<Copy> copies) {
 		this.copies = copies;
 	}
-	public Collection<Genre> getGenres() {
+	public List<Genre> getGenres() {
 		return genres;
 	}
-	public void setGenres(Collection<Genre> genres) {
+	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
 	}
 
-	public Collection<Author> getAuthors() {
+	public List<Author> getAuthors() {
 		return authors;
 	}
 
-	public void setAuthors(Collection<Author> authors) {
+	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
 	}
 

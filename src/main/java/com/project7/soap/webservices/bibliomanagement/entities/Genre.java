@@ -1,7 +1,8 @@
 package com.project7.soap.webservices.bibliomanagement.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class Genre implements Serializable {
 	private String genre;
 	@ManyToMany
 	@JoinTable(name = "book_genre")
-	private Collection<Book> books;
+	private List<Book> books = new ArrayList<Book>();
 	
 	public Genre() {
 		super();
@@ -50,11 +51,11 @@ public class Genre implements Serializable {
 		this.genre = genre;
 	}
 
-	public Collection<Book> getBooks() {
+	public List<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(Collection<Book> books) {
+	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
 
