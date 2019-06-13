@@ -1,4 +1,4 @@
-package com.project7.soap.webservices.bibliomanagement.entities;
+package com.project7.bibliomanagement.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,46 +9,47 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "genre")
-public class Genre implements Serializable {
-
+@Table(name = "editor")
+public class Editor implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@Column(name = "genre")
-	private String genre;
-	@ManyToMany
-	@JoinTable(name = "book_genre")
+	@Column(name = "name")
+	private String name;
+	@OneToMany(mappedBy = "editor")
 	private List<Book> books = new ArrayList<Book>();
 	
-	public Genre() {
+	public Editor() {
 		super();
 	}
-	
-	public Genre(String genre) {
+
+	public Editor(String name) {
 		super();
-		this.genre = genre;
+		this.name = name;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getGenre() {
-		return genre;
+
+	public String getName() {
+		return name;
 	}
-	public void setGenre(String genre) {
-		this.genre = genre;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Book> getBooks() {

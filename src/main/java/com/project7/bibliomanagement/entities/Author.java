@@ -1,19 +1,21 @@
-package com.project7.soap.webservices.bibliomanagement.entities;
+package com.project7.bibliomanagement.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnTransformer;
-
 @Entity
-@Table(name = "member")
-public class Member implements Serializable {
+@Table(name = "author")
+public class Author implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,25 +27,18 @@ public class Member implements Serializable {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
-	@Column(name = "email")
-	private String email;
-	@Column(name = "password")
-	@ColumnTransformer(
-		read = "pgp_sym_decrypt(password, 'mySecretKey')", 
-		write = "pgp_sym_encrypt(?, 'mySecretKey')"
-	)
-	private String password;
+	@ManyToMany
+	@JoinTable(name = "book_author")
+	private List<Book> books = new ArrayList<Book>();
 	
-	public Member() {
+	public Author() {
 		super();
 	}
 
-	public Member(String firstName, String lastName, String email, String password) {
+	public Author(String firstName, String lastName) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
 	}
 
 	public Long getId() {
@@ -70,20 +65,12 @@ public class Member implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getEmail() {
-		return email;
+	public List<Book> getBooks() {
+		return books;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.project7.soap.webservices.bibliomanagement.entities;
+package com.project7.bibliomanagement.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "author")
-public class Author implements Serializable {
+@Table(name = "genre")
+public class Genre implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -23,46 +23,32 @@ public class Author implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@Column(name = "first_name")
-	private String firstName;
-	@Column(name = "last_name")
-	private String lastName;
+	@Column(name = "genre")
+	private String genre;
 	@ManyToMany
-	@JoinTable(name = "book_author")
+	@JoinTable(name = "book_genre")
 	private List<Book> books = new ArrayList<Book>();
 	
-	public Author() {
+	public Genre() {
 		super();
 	}
-
-	public Author(String firstName, String lastName) {
+	
+	public Genre(String genre) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.genre = genre;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getFirstName() {
-		return firstName;
+	public String getGenre() {
+		return genre;
 	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
 	public List<Book> getBooks() {

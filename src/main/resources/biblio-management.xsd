@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://webservices.soap.project7.com/biblio"
+	xmlns:tns="http://webservices.soap.project7.com/biblio"
+	elementFormDefault="qualified">
+
+	<xs:element name="AuthenticationRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="email" type="xs:string" />
+				<xs:element name="password" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="AuthenticationResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MemberDetails" type="tns:MemberDetails" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignUpRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="firstName" type="xs:string" />
+				<xs:element name="lastName" type="xs:string" />
+				<xs:element name="email" type="xs:string" />
+				<xs:element name="password" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignUpResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MemberDetails" type="tns:MemberDetails" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetAllBooksRequest">
+		<xs:complexType>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetAllBooksResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="BookDetails" type="tns:BookDetails"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="MemberDetails">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="firstName" type="xs:string" />
+			<xs:element name="lastName" type="xs:string" />
+			<xs:element name="email" type="xs:string" />
+			<xs:element name="password" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BookDetails">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="title" type="xs:string" />
+			<xs:element name="image" type="xs:string" />
+			<xs:element name="summary" type="xs:string" />
+			<xs:element name="isbn" type="xs:long" />
+			<xs:element name="LanguageDetails" type="tns:LanguageDetails" />
+			<xs:element name="EditorDetails" type="tns:EditorDetails" minOccurs="1" maxOccurs="1" />
+			<xs:element name="authors" type="tns:AuthorDetails" maxOccurs="unbounded" />
+			<xs:element name="genres" type="tns:GenreDetails" maxOccurs="unbounded" />
+			<xs:element name="copies" type="tns:CopyDetails" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LanguageDetails">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="language" type="xs:string" />
+			<xs:element name="code" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EditorDetails">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="name" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CopyDetails">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AuthorDetails">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="firstName" type="xs:string" />
+			<xs:element name="lastName" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+		<xs:complexType name="GenreDetails">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="genre" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

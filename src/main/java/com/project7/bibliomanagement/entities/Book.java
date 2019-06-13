@@ -1,4 +1,4 @@
-package com.project7.soap.webservices.bibliomanagement.entities;
+package com.project7.bibliomanagement.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "book")
@@ -40,11 +43,14 @@ public class Book implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "editor_id")
 	private Editor editor;
-	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Copy> copies = new ArrayList<Copy>();
-	@ManyToMany(mappedBy = "books")
+	@ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Genre> genres = new ArrayList<Genre>();
-	@ManyToMany(mappedBy = "books")
+	@ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Author> authors = new ArrayList<Author>();
 	
 	public Book() {

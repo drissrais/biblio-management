@@ -1,4 +1,4 @@
-package com.project7.soap.webservices.bibliomanagement.entities;
+package com.project7.bibliomanagement.entities;
 
 import java.io.Serializable;
 
@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "status")
-public class Status implements Serializable {
+@Table(name = "copy")
+public class Copy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,32 +21,30 @@ public class Status implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@Column(name = "status")
-	private String status;
+	@ManyToOne
+	@JoinColumn(name = "book_id")
+	private Book book;
 	
-	public Status() {
+	public Copy() {
 		super();
 	}
-
-	public Status(String status) {
+	
+	public Copy(Book book) {
 		super();
-		this.status = status;
+		this.book = book;
 	}
 
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getStatus() {
-		return status;
+	public Book getBook() {
+		return book;
 	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 }
